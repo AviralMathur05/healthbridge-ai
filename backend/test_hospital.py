@@ -1,3 +1,6 @@
 from healthbridge.tools.hospital_lookup import find_hospitals
 
-print(find_hospitals("Manipal"))
+results = find_hospitals("Manipal")
+
+for hospital in results:
+    print(hospital["display_name"])

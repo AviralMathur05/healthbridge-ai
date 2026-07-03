@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Node
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+dist/
+build/
+
+# Local caches
+.cache/

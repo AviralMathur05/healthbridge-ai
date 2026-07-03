@@ -1,18 +1,27 @@
-HOSPITALS = {
-    "manipal": [
-        {
-            "name": "KMC Hospital",
-            "type": "Multi Specialty",
-            "phone": "+91-820-2922326"
-        },
-        {
-            "name": "Dr. TMA Pai Hospital",
-            "type": "General",
-            "phone": "+91-820-2922208"
-        }
-    ]
-}
+import requests
 
 
 def find_hospitals(city: str):
-    return HOSPITALS.get(city.lower(), [])
+
+    url = "https://nominatim.openstreetmap.org/search"
+
+    params = {
+        "q": f"hospital in {city}",
+        "format": "json",
+        "limit": 5
+    }
+
+    headers = {
+        "User-Agent": "HealthBridgeAI"
+    }
+
+    response = requests.get(
+        url,
+        params=params,
+        headers=headers
+    )
+
+    if response.status_code != 200:
+        return []
+
+    return response.json()

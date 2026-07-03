@@ -1,43 +1,64 @@
-import { Bell, Moon, UserCircle } from "lucide-react";
+import { Bell, Moon, Sun, UserCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
 
-    return (
+  const navigate = useNavigate();
 
-        <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-slate-200">
+  const [dark, setDark] = useState(false);
 
-            <div className="flex items-center justify-between px-10 h-20">
+  useEffect(() => {
 
-                <div>
+    if (dark)
+      document.documentElement.classList.add("dark");
+    else
+      document.documentElement.classList.remove("dark");
 
-                    <h1 className="text-3xl font-bold">
+  }, [dark]);
 
-                        ❤️ HealthBridge AI
+  return (
 
-                    </h1>
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
 
-                    <p className="text-slate-500">
+      <div className="flex items-center justify-between px-10 h-20">
 
-                        Digital Community Health Worker
+        <div>
 
-                    </p>
+          <h1 className="text-3xl font-bold">
+            ❤️ HealthBridge AI
+          </h1>
 
-                </div>
+          <p className="text-slate-500">
+            Digital Community Health Worker
+          </p>
 
-                <div className="flex items-center gap-5">
+        </div>
 
-                    <Moon size={22}/>
+        <div className="flex items-center gap-5">
 
-                    <Bell size={22}/>
+          <button onClick={() => setDark(!dark)}>
+            {dark ? <Sun size={22}/> : <Moon size={22}/>}
+          </button>
 
-                    <UserCircle size={34}/>
+          <button
+            onClick={() => alert("No new notifications")}
+          >
+            <Bell size={22}/>
+          </button>
 
-                </div>
+          <button
+            onClick={() => navigate("/passport")}
+          >
+            <UserCircle size={34}/>
+          </button>
 
-            </div>
+        </div>
 
-        </header>
+      </div>
 
-    );
+    </header>
+
+  );
 
 }

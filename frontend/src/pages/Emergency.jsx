@@ -1,7 +1,12 @@
+import AIFeaturePage from "../components/AIFeaturePage";
+import { emergencyHelp } from "../services/api";
+
 export default function Emergency() {
   return (
-    <div>
-      <h1>Emergency</h1>
-    </div>
+    <AIFeaturePage
+      title="Emergency Assistant"
+      placeholder="Describe the emergency..."
+      apiFunction={emergencyHelp}
+    />
   );
 }
