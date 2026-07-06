@@ -16,13 +16,11 @@ app = FastAPI(
 )
 
 app.add_middleware(
-   app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
-)
 )
 
 app.include_router(symptom.router, prefix="/symptom")
@@ -35,6 +33,4 @@ app.include_router(emergency.router, prefix="/emergency")
 
 @app.get("/")
 def home():
-    return {
-        "message": "HealthBridge AI Running 🚀"
-    }
+    return {"message": "HealthBridge AI Running 🚀"}
